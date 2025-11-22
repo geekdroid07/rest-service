@@ -17,3 +17,7 @@ yarn-error.log*
 # Jest
 /jest-cache
 /jest-test-results.json
+
+
+# Lock files
+package-lock.json
