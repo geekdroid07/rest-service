@@ -40,7 +40,7 @@ El SOAP service debe estar corriendo para completar los flujos.
 ## Ejecución en producción con Docker
 
 ```bash
-docker-compose up --build
+docker-compose up --build -d
 ```
 
 El contenedor expone el puerto `5000`. Ajusta la variable `SOAP_ENDPOINT` para apuntar al servicio SOAP en tu infraestructura (por defecto `http://wallet-soap:4000/wsdl?wsdl`).
