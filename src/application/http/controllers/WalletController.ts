@@ -33,6 +33,7 @@ export class WalletController {
       });
       res.status(response.success ? 200 : 400).json(response);
     } catch (error) {
+      debugger;
       res.status(500).json(buildInternalError((error as Error).message));
     }
   };

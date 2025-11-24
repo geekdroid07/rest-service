@@ -6,6 +6,8 @@ import { appConfig } from '../../config/env';
 import { createWalletRouter } from './routes/walletRoutes';
 import { WalletController } from '../../application/http/controllers/WalletController';
 import { logger } from '../../infrastructure/utils/logger';
+import swaggerUi from 'swagger-ui-express';
+import { swaggerSpec } from '../../config/swagger';
 
 export const createApp = (controller?: WalletController) => {
   const app = express();
@@ -15,6 +17,12 @@ export const createApp = (controller?: WalletController) => {
   app.use(express.json());
 
   app.use('/api', createWalletRouter(controller));
+
+  // Swagger UI
+  app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.get('/swagger.json', (_req: express.Request, res: express.Response) => {
+    res.json(swaggerSpec);
+  });
 
   app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
     logger.error('Unhandled error', err);
